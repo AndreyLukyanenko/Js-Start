@@ -11,6 +11,7 @@ let startBtn = document.getElementById("start"),
     yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0],
 
 
+	allButtons = document.getElementsByTagName('button'),
 	expensesItem = document.getElementsByClassName('expenses-item'),
 	expensesBtn = document.getElementsByTagName('button')[0],
 	optionalExpensesBtn = document.getElementsByTagName('button')[1],
@@ -22,11 +23,20 @@ let startBtn = document.getElementById("start"),
     percentValue = document.querySelector('.choose-percent'),
     yearValue = document.querySelector('.year-value'),
     monthValue = document.querySelector('.month-value'),
-    dayValue = document.querySelector('.day-value');
+	dayValue = document.querySelector('.day-value');
+
+	expensesBtn.setAttribute('disabled', 'disabled');
+	optionalExpensesBtn.setAttribute('disabled', 'disabled');
+	countBtn.setAttribute('disabled', 'disabled');	
 
 let money, time;
 
 startBtn.addEventListener('click', function() {
+
+	expensesBtn.removeAttribute('disabled');
+	optionalExpensesBtn.removeAttribute('disabled');
+	countBtn.removeAttribute('disabled');
+
 	time = prompt ("Введите дату в формате YYYY-MM-DD", "");
 	money = +prompt ("Ваш бюджет на месяц?", "");
 
@@ -39,6 +49,7 @@ startBtn.addEventListener('click', function() {
 	yearValue.value = new Date(Date.parse(time)).getFullYear();
 	monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
 	dayValue.value = new Date(Date.parse(time)).getDate();
+
 });
 
 expensesBtn.addEventListener('click', function() {
