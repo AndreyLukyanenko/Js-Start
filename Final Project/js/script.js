@@ -25,11 +25,11 @@ let startBtn = document.getElementById("start"),
     monthValue = document.querySelector('.month-value'),
 	dayValue = document.querySelector('.day-value');
 
-	expensesBtn.setAttribute('disabled', 'disabled');
-	optionalExpensesBtn.setAttribute('disabled', 'disabled');
-	countBtn.setAttribute('disabled', 'disabled');	
-
 let money, time;
+
+expensesBtn.setAttribute('disabled', 'disabled');
+optionalExpensesBtn.setAttribute('disabled', 'disabled');
+countBtn.setAttribute('disabled', 'disabled');	
 
 startBtn.addEventListener('click', function() {
 
@@ -45,7 +45,7 @@ startBtn.addEventListener('click', function() {
 	}
 	appData.budget = money;
 	appData.timeData = time;
-	budgetValue.textContent = money.toFixed() + ' 	грн';
+	budgetValue.textContent = money.toFixed();
 	yearValue.value = new Date(Date.parse(time)).getFullYear();
 	monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
 	dayValue.value = new Date(Date.parse(time)).getDate();
@@ -66,7 +66,7 @@ expensesBtn.addEventListener('click', function() {
 		}
 	
 	}
-	expensesValue.textContent = sum + ' грн';
+	expensesValue.textContent = sum;
 });
 
 
@@ -82,8 +82,8 @@ countBtn.addEventListener('click', function(){
 
 	if(appData.budget != undefined) {
 
-		appData.moneyPerDay = (appData.budget / 30).toFixed();
-		dayBudgetValue.textContent = appData.moneyPerDay + ' грн';
+		appData.moneyPerDay = ((appData.budget - +expensesValue.textContent) / 30).toFixed();
+		dayBudgetValue.textContent = appData.moneyPerDay;
 
 		if (appData.moneyPerDay < 100) {
 			levelValue.textContent = "Это минимальный уровень достатка!";
@@ -124,8 +124,8 @@ sumValue.addEventListener('input', function() {
 		appData.monthIncome = sum/100/12*percent;
 		appData.yearIncome = sum/100*percent;	
 
-		monthSavingsValue.textContent = appData.monthIncome.toFixed(1) + ' грн';
-		yearSavingsValue.textContent = appData.yearIncome.toFixed(1) + ' грн';
+		monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+		yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
 	}
 });
 
@@ -137,8 +137,8 @@ percentValue.addEventListener('input', function() {
 	appData.monthIncome = sum/100/12*percent;
 	appData.yearIncome = sum/100*percent;	
 
-	monthSavingsValue.textContent = appData.monthIncome.toFixed(1) + ' грн';
-	yearSavingsValue.textContent = appData.yearIncome.toFixed(1) + ' грн';
+	monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+	yearSavingsValue.textContent =  appData.yearIncome.toFixed(1);
 	}
 });
     
@@ -148,5 +148,5 @@ let appData = {
     expenses: {},
     optionalExpenses: {},
     income: [],
-	savings: false,	
+	savings: false,
 };
